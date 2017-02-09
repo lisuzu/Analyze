@@ -57,9 +57,9 @@ def index(request):
             return SeachResult(request,TXT)
 
     forms = SeachFrom()
-    return render(request,'seach.html',{'form':forms,'visitor':name})
+    return render(request,'result.html',{'form':forms,'visitor':name})
 
 def SeachResult(request,keys):
-    return render(request,'mains.html',{"title":keys})
+    return render(request,'result.html',{"title":keys})
 
 
