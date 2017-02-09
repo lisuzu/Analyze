@@ -14,8 +14,8 @@ class ContactFrom(forms.Form):
     subject_choices =(('1','install'),)
     version = forms.ChoiceField(label=u'版本',choices=version_choices)
     subject = forms.ChoiceField(label=u'类型',choices=subject_choices)
-    IP = forms.GenericIPAddressField(label=u'服务器ip')
-    pwd = forms.CharField(label=u'密码',widget=forms.PasswordInput)
+    IP = forms.GenericIPAddressField(label=u'服务器ip',error_messages={'required': 'IP地址不能为空', 'invalid': 'IP地址格式错误,请填写IPV4地址'})
+    pwd = forms.CharField(label=u'密码',widget=forms.PasswordInput,error_messages={'required': '密码不能为空'})
 
     # def clean(self):
     #     message = self.cleaned_data['IP']
@@ -36,9 +36,9 @@ def LogAnalyze(request):
             version = form.cleaned_data['version']
             IP = form.cleaned_data['IP']
             pwd = form.cleaned_data['pwd']
-            result = test.delay('test')
+            result = test.delay(1,2)
             import time
-            time.sleep(22)
+            # time.sleep(22)
             return HttpResponse(str(result.result)+'yyy')
     else:
         form = ContactFrom()

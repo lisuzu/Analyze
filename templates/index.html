@@ -1,30 +1,88 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <title>Contact us</title>
+        <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/index.js"></script>
+    <script type="text/javascript" src="/static/js/piko.js"></script>
+    <style>
+        /*  在此处填写叠层样式  */
+        body, html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            height: 80%;
+            width: 80%; /*  必须设置一个宽度， margin: 0 auto才能使之居于父组件中央*/
+            margin: 10px auto; /*  通过设置外边距（margin）中的左右外边距属性为auto使之居于父组件（body）中间*/
+        }
+
+        table td {
+        {#                height: 40px;#}{#                width: 100%;#}{#                background-color: red;#} Align: right;
+        }
+
+        table > tr > td {
+            height: 100%;
+            width: 33.3%;
+        {#                background-color: red;#}
+        }
+    </style>
 </head>
-<body>
-<h2>Hi {{ visitor }}, welcome to use the product inquiry system.</h2>
-    <h1>Contact us</h1>
+<body background-color:#fff>
 
-    {% if form.errors %}
-        <p style="color: red;">
-            {# pulralize 是filter，用来判断是否为添加's'来表示单词的复数形式#}
-            Please correct the error{{ form.errors|pluralize }} below.
-        </p>
-    {% endif %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Hi {{ visitor }}, Hi world！</h1>
+        <p>这是一个测试版，用于确定是否是已知问题，后续将智能定位未知问题。目前仅支持Linux系统，将主机地址和root密码输入，在定位过程中非常耗资源，因为他正在进行多文件同时分析和获取最接近的处理方案。</p>
+        <p>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                了解更多
+            </button>
+        </p>
+    </div>
 
-    <form action="" method="post">{% csrf_token %}
-        <table>
-            {# 可以使用as_ul, as_p来改变格式 #}
-            {{ form.as_table }}
-        </table>
-        <input type="submit" size="" value="Submit">
-    </form>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">一键定位</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>功能</h3>
+                    <p>方便、快速的处理已知问题，快速定未知问题，高效完成工作任务。</p>
 
-<dl class="dl-horizontal">
-  <dt>版本</dt>
-  <dd>{{ form.subject }}</dd>
-</dl>
-<samp>This text is meant to be treated as sample output from a computer program.</samp>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+            
+        <form class="form-horizontal" action="" method="post">{% csrf_token %}
+                   
+            <dl class="dl-horizontal">
+                {% for item in form %}
+
+                    <dt>{{ item.label_tag }}</dt>
+                    <dd>{{ item }}<font color="red">{{ item.errors }}</font></dd>
+                {% endfor %}
+                    
+                <dd><input class="btn btn btn-success" type="submit" value="Submit"></dd>
+            </dl>
+        </form>
+    </div>
+</div>
 </body>
 </html>
