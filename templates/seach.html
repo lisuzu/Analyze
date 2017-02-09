@@ -1,10 +1,22 @@
 {% extends "base/header.html" %}
 {% block title %}搜索{% endblock %}
 {% block seach %}
-    <div class="input-group">
-        {{ form.TXT }}
-        <span class="input-group-addon btn btn-primary">
-            搜索
-        </span>
-    </div>
+{#    <div class="input-group">#}
+{#        {{ form.TXT }}#}
+{#        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small#}
+{#            modal#}
+{#        </button>#}
+{#    </div>#}
+
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+            <div class="input-group">
+{#                <div class="input-group-addon"></div>#}
+                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+{#                <div class="input-group-addon"></div>#}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Transfer cash</button>
+    </form>
 {% endblock %}

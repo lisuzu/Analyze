@@ -1,17 +1,13 @@
 #-*- encoding=utf-8 -*-
 
 from django.shortcuts import render
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponse
 from django.shortcuts import render_to_response
 from django import forms
 from models import ErrorRe,Comment,FileList
-import paramiko
+from tasks import test
 
 
-def judgeadder(IP,pwd):
-    client = paramiko.SSHClient()
-    connect = client.connect(hostname=IP,username='root',password=pwd)
-    print connect
 
 class ContactFrom(forms.Form):
     version_choices =(('1','U2000',),('2','M2000',))
@@ -40,8 +36,10 @@ def LogAnalyze(request):
             version = form.cleaned_data['version']
             IP = form.cleaned_data['IP']
             pwd = form.cleaned_data['pwd']
-            judgeadder(IP,pwd)
-            return HttpResponseRedirect()
+            result = test.delay('test')
+            import time
+            time.sleep(22)
+            return HttpResponse(str(result.result)+'yyy')
     else:
         form = ContactFrom()
     return render(request,'index.html',{'form':form,'visitor':name})
