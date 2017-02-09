@@ -5,7 +5,7 @@ from django.shortcuts import HttpResponse
 from django.shortcuts import render_to_response
 from django import forms
 from models import ErrorRe,Comment,FileList
-from tasks import test
+# from tasks import test
 
 
 
@@ -36,10 +36,10 @@ def LogAnalyze(request):
             version = form.cleaned_data['version']
             IP = form.cleaned_data['IP']
             pwd = form.cleaned_data['pwd']
-            result = test.delay(1,2)
+            # result = test.delay(1,2)
             import time
             # time.sleep(22)
-            return HttpResponse(str(result.result)+'yyy')
+            # return HttpResponse(str(result.result)+'yyy')
     else:
         form = ContactFrom()
     return render(request,'index.html',{'form':form,'visitor':name})
