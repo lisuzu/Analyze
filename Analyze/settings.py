@@ -161,3 +161,19 @@ LOGGING = {
         },
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#
+# EMAIL_USE_TLS = False
+# EMAIL_HOST = 'smtp.tuweizhong.com'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = 'mail@tuweizhong.com'
+# EMAIL_HOST_PASSWORD = 'xxxx'
+# DEFAULT_FROM_EMAIL = 'mail@tuweizhong.com'
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = '1173372284@qq.com'
+EMAIL_HOST_PASSWORD = 'Pengna930310..'
+# UserEmail=''
+EMAIL_USE_TLS = True
