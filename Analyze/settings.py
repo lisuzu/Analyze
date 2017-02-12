@@ -174,6 +174,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = '25'
 EMAIL_HOST_USER = '1173372284@qq.com'
-EMAIL_HOST_PASSWORD = 'Pengna930310..'
+EMAIL_HOST_PASSWORD = '********'
 # UserEmail=''
 EMAIL_USE_TLS = True
+
+
+# full text search
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'dlnubuy.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+# 自动更新索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

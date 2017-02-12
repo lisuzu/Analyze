@@ -2,3 +2,6 @@ django==1.10
 celery==4
 sqlalchemy
 Pillow
+whoosh
+jieba
+django-haystack
